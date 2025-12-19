@@ -1,0 +1,3 @@
+-- seed.sql (placeholder)
+-- Isi data awal (opsional)
+-- INSERT INTO ps(tipe_ps, harga_per_jam, status) VALUES ('PS4', 10000, 'tersedia');

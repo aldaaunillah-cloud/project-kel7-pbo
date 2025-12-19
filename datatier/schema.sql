@@ -1,0 +1,8 @@
+-- schema.sql (placeholder)
+-- Buat database & tabel di sini.
+-- Contoh:
+-- CREATE DATABASE rental_ps;
+-- USE rental_ps;
+-- CREATE TABLE users (...);
+-- CREATE TABLE ps (...);
+-- CREATE TABLE rental (...);

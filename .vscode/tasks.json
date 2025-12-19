@@ -1,0 +1,16 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Java: Clean bin",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-Command",
+        "if (Test-Path bin) { Remove-Item -Recurse -Force bin }"
+      ],
+      "problemMatcher": []
+    }
+  ]
+}
