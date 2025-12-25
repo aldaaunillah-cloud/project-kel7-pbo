@@ -1,13 +1,32 @@
 package ui;
 
+import service.ReportService;
+
 import javax.swing.*;
+import java.util.Map;
 
 public class AdminFrame extends JFrame {
+
+    private final ReportService reportService = new ReportService();
+
     public AdminFrame() {
-        setTitle("Admin - Rental PS");
-        setSize(1000, 650);
+        setTitle("Admin");
+        setSize(400, 300);
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        // TODO
+
+        JTextArea area = new JTextArea();
+        JButton loadBtn = new JButton("Load Leaderboard");
+
+        loadBtn.addActionListener(e -> {
+            Map<String, Integer> data = reportService.getLeaderboardData();
+            area.setText("");
+
+            data.forEach((user, total) ->
+                    area.append(user + " : " + total + "\n"));
+        });
+
+        add(loadBtn, "North");
+        add(new JScrollPane(area), "Center");
+        setVisible(true);
     }
 }

@@ -1,9 +1,14 @@
 package ui.theme;
 
+import javax.swing.*;
+
 public class ThemeConfig {
-    public static void setup() {
-        // TODO: FlatLaf setup (optional)
-        // Example:
-        // com.formdev.flatlaf.FlatLightLaf.setup();
+
+    public static void apply() {
+        try {
+            UIManager.setLookAndFeel(
+                UIManager.getSystemLookAndFeelClassName()
+            );
+        } catch (Exception ignored) {}
     }
 }
