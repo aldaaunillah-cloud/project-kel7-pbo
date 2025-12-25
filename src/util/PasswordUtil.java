@@ -1,14 +1,18 @@
 package util;
 
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 
 public class PasswordUtil {
 
     public static String hash(String password) {
+        if (password == null) {
+            throw new IllegalArgumentException("Password tidak boleh null");
+        }
+
         try {
-            MessageDigest md =
-                    MessageDigest.getInstance("SHA-256");
-            byte[] hash = md.digest(password.getBytes());
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            byte[] hash = md.digest(password.getBytes(StandardCharsets.UTF_8));
 
             StringBuilder sb = new StringBuilder();
             for (byte b : hash) {
@@ -17,7 +21,7 @@ public class PasswordUtil {
             return sb.toString();
 
         } catch (Exception e) {
-            return null;
+            throw new RuntimeException("Gagal hash password", e);
         }
     }
 }

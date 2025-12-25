@@ -1,3 +1,6 @@
--- seed.sql (placeholder)
--- Isi data awal (opsional)
--- INSERT INTO ps(tipe_ps, harga_per_jam, status) VALUES ('PS4', 10000, 'tersedia');
+INSERT INTO users (username, password, role)
+VALUES (
+  'admin',
+  '8d969eef6ecad3c29a3a629280e686cff8fab...<HASH SHA256>',
+  'ADMIN'
+);

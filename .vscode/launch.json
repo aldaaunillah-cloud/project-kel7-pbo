@@ -3,6 +3,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "DBConnection",
+      "request": "launch",
+      "mainClass": "util.DBConnection",
+      "projectName": "project-kel7-pbo_5526096f"
+    },
+    {
+      "type": "java",
       "name": "Run Desktop App (Main)",
       "request": "launch",
       "mainClass": "app.Main"
