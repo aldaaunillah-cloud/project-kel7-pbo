@@ -1,2 +1,14 @@
+# hasil runtime
+*.pdf
+*.txt
+STRUK_RENTAL_*
+
+# library lokal
+lib/*.jar
+
+# build output
 bin/
-*.class
+
+# OS / IDE
+.DS_Store
+Thumbs.db

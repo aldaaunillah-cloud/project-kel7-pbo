@@ -9,6 +9,7 @@ public class ApiClient {
 
     protected static String BASE_URL = "http://localhost:8080/api";
 
+    @SuppressWarnings("deprecation")
     protected static String get(String endpoint) throws Exception {
         URL url = new URL(BASE_URL + endpoint);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();

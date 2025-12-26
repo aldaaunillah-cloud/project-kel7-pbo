@@ -5,9 +5,7 @@ import java.util.Map;
 
 public class ReportService {
 
-    private final LeaderboardDAO leaderboardDAO = new LeaderboardDAO();
-
-    public Map<String, Integer> getLeaderboardData() {
-        return leaderboardDAO.getTopUsers();
+    public Map<String,Integer> getLeaderboard() {
+        return new LeaderboardDAO().getTopUsers();
     }
 }

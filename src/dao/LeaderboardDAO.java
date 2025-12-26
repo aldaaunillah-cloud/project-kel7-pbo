@@ -1,36 +1,63 @@
 package dao;
 
 import util.DBConnection;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.sql.*;
+import java.util.*;
 
 public class LeaderboardDAO {
 
-    public Map<String, Integer> getTopUsers() {
-        Map<String, Integer> data = new LinkedHashMap<>();
+    // ===============================
+    // TAMBAH / UPDATE POINT USER
+    // ===============================
+    public void addPoint(int userId, int point) {
         String sql = """
-            SELECT u.username, COUNT(r.id) AS total
-            FROM users u
-            JOIN rental r ON u.id = r.user_id
-            GROUP BY u.username
-            ORDER BY total DESC
-            LIMIT 5
+            INSERT INTO leaderboard(user_id, point)
+            VALUES (?, ?)
+            ON DUPLICATE KEY UPDATE point = point + ?
         """;
 
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql);
+        try (Connection c = DBConnection.getConnection();
+             PreparedStatement ps = c.prepareStatement(sql)) {
+
+            ps.setInt(1, userId);
+            ps.setInt(2, point);
+            ps.setInt(3, point);
+            ps.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // ===============================
+    // AMBIL DATA LEADERBOARD
+    // ===============================
+    public Map<String, Integer> getTopUsers() {
+        Map<String, Integer> map = new LinkedHashMap<>();
+
+        String sql = """
+            SELECT u.username, l.point
+            FROM leaderboard l
+            JOIN users u ON l.user_id = u.id
+            ORDER BY l.point DESC
+            LIMIT 10
+        """;
+
+        try (Connection c = DBConnection.getConnection();
+             PreparedStatement ps = c.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
-                data.put(rs.getString("username"), rs.getInt("total"));
+                map.put(
+                        rs.getString("username"),
+                        rs.getInt("point")
+                );
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return data;
+
+        return map;
     }
 }

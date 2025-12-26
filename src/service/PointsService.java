@@ -1,8 +1,12 @@
 package service;
 
+import dao.LeaderboardDAO;
+
 public class PointsService {
 
-    public int calculatePoints(int hours) {
-        return hours * 10;
+    private final LeaderboardDAO dao = new LeaderboardDAO();
+
+    public void addPointToUser(int userId, int hours) {
+        dao.addPoint(userId, hours * 10);
     }
 }
